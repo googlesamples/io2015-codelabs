@@ -1,0 +1,11 @@
+
+div.circleEffect {
+  width: 240vw;
+  height: 240vw;
+  margin-left: -120vw;
+  margin-top: -120vw;
+  border-radius: 100%;
+  position: absolute;
+  will-change: transform;
+}
+

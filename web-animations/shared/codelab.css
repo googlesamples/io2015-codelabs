@@ -1,0 +1,182 @@
+/*
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+body {
+  font-family: "Roboto", Arial, Sans-Serif;
+  margin: 0;
+  background: #f4f4f4;
+  min-height: 150vh;
+}
+
+header {
+  min-height: 20em;
+  text-align: right;
+  box-sizing: border-box;
+  padding: 1em;
+  background: #3a606a;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+
+header .links {
+  float: right;
+  z-index: 2;
+  position: relative;
+}
+
+header .links a {
+  display: inline-block;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.25s;
+  color: white;
+  padding: 0.5em 1em;
+  float: left;
+}
+
+header .links a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+header .links a.active {
+  opacity: 1.0;
+}
+
+section {
+  will-change: transform;
+  margin: -2em 2em 2em;
+  z-index: 2;
+  width: calc(100% - 4em);
+  box-sizing: border-box;
+  position: absolute;
+}
+
+section[hidden] {
+  display: block;
+  visibility: hidden;
+}
+
+section article {
+  background: white;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0.5em 2em;
+  border-radius: 3px;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.16);
+}
+
+@media all and (max-width: 600px) {
+  section {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+  section article {
+    border-radius: 0;
+  }
+}
+
+section article p,
+section article ul {
+  color: #333;
+  text-align: justify;
+  font-size: 0.9em;
+  line-height: 1.7em;
+}
+
+.fixed {
+  position: fixed;
+  bottom: 0;
+  padding: 2em;
+}
+
+.fixed .icon {
+  color: white;
+}
+
+.fixed .icon svg {
+  fill: currentColor;
+}
+
+/** unused .skybox */
+
+.skybox {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: pink;
+}
+
+.skybox .sky {
+  position: absolute;
+  bottom: 0;
+  left: -8em;
+  right: -8em;
+  border-left: 50% transparent solid;
+  border-top: 8em currentColor solid;
+  border-right: 50% transparent solid;
+  box-shadow: 0 -4px 48px currentColor;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+}
+.skybox .sky.light {
+  color: #b4d6e8;
+}
+.skybox .sky.dark {
+  color: #39444a;
+}
+
+.skybox .icon {
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  bottom: 5em;
+  background: transparent no-repeat center;
+  will-change: transform;
+  transition: transform 0.5s;
+}
+
+.skybox .icon.cloud {
+  background-image: url(icon-cloud.svg);
+}
+
+.skybox .icon.moon {
+  right: 12em;
+  background-image: url(icon-moon.svg);
+}
+
+.skybox .icon.sun {
+  position: absolute;
+  left: 12em;
+  background-image: url(icon-sun.svg);
+}
+.skybox .icon.sun::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+  opacity: 0.5;
+  background: url(icon-sun.svg) center no-repeat;
+}
