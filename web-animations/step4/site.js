@@ -73,7 +73,7 @@ window.addEventListener('load', function() {
   var steps = [
     {color: 'hsl(206, 46%, 89%)', transform: 'scale(0.5)'},
     {color: 'hsl(13, 79%, 96%)', transform: 'scale(2)'},
-    {color: 'red', transform: 'scale(1)'},
+    {color: 'red', transform: 'scale(1)'}
   ];
 
   var timing = {duration: 1, fill: 'both', easing: 'ease-in-out'};
