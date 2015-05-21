@@ -105,6 +105,7 @@ section article ul {
   position: fixed;
   bottom: 0;
   padding: 2em;
+  z-index: 100;
 }
 
 .fixed .icon {
@@ -113,70 +114,4 @@ section article ul {
 
 .fixed .icon svg {
   fill: currentColor;
-}
-
-/** unused .skybox */
-
-.skybox {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: pink;
-}
-
-.skybox .sky {
-  position: absolute;
-  bottom: 0;
-  left: -8em;
-  right: -8em;
-  border-left: 50% transparent solid;
-  border-top: 8em currentColor solid;
-  border-right: 50% transparent solid;
-  box-shadow: 0 -4px 48px currentColor;
-  border-top-left-radius: 100%;
-  border-top-right-radius: 100%;
-}
-.skybox .sky.light {
-  color: #b4d6e8;
-}
-.skybox .sky.dark {
-  color: #39444a;
-}
-
-.skybox .icon {
-  position: absolute;
-  width: 4em;
-  height: 4em;
-  bottom: 5em;
-  background: transparent no-repeat center;
-  will-change: transform;
-  transition: transform 0.5s;
-}
-
-.skybox .icon.cloud {
-  background-image: url(icon-cloud.svg);
-}
-
-.skybox .icon.moon {
-  right: 12em;
-  background-image: url(icon-moon.svg);
-}
-
-.skybox .icon.sun {
-  position: absolute;
-  left: 12em;
-  background-image: url(icon-sun.svg);
-}
-.skybox .icon.sun::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  -webkit-filter: blur(3px);
-  filter: blur(3px);
-  opacity: 0.5;
-  background: url(icon-sun.svg) center no-repeat;
 }
