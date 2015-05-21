@@ -1,0 +1,6 @@
+#include "Pods-GoogleUtilities.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/GoogleUtilities" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Google" "${PODS_ROOT}/Headers/Public/Google/Google" "${PODS_ROOT}/Headers/Public/GoogleMobileAds" "${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities" "${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities" "${PODS_ROOT}/Headers/Public/GoogleUtilities"
+LIBRARY_SEARCH_PATHS = ${PODS_GOOGLEUTILITIES_LIBRARY_SEARCH_PATHS}
+OTHER_LDFLAGS = ${PODS_GOOGLEUTILITIES_OTHER_LDFLAGS} -ObjC
+PODS_ROOT = ${SRCROOT}

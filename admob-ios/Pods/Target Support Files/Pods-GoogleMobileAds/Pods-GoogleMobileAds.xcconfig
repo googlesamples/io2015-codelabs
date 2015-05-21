@@ -1,0 +1,2 @@
+PODS_GOOGLEMOBILEADS_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/GoogleMobileAds/Frameworks"
+PODS_GOOGLEMOBILEADS_OTHER_LDFLAGS = -framework "AVFoundation" -framework "AudioToolbox" -framework "CoreGraphics" -framework "CoreMedia" -framework "CoreTelephony" -framework "EventKit" -framework "EventKitUI" -framework "GoogleMobileAds" -framework "MessageUI" -framework "StoreKit" -framework "SystemConfiguration" -weak_framework "AdSupport"

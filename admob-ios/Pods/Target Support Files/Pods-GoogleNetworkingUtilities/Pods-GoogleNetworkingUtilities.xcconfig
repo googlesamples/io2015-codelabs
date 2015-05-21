@@ -1,0 +1,2 @@
+PODS_GOOGLENETWORKINGUTILITIES_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleNetworkingUtilities/Libraries" "$(PODS_ROOT)/GoogleNetworkingUtilities/Libraries"
+PODS_GOOGLENETWORKINGUTILITIES_OTHER_LDFLAGS = -l"GTMSessionFetcher_core" -l"GTMSessionFetcher_full"

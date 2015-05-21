@@ -1,0 +1,26 @@
+PODS:
+  - Google/AdMob (1.0.0):
+    - Google/Core
+    - GoogleMobileAds (~> 7.0)
+  - Google/Core (1.0.0):
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.0)
+  - GoogleMobileAds (7.2.1)
+  - GoogleNetworkingUtilities (1.0.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.0.0)
+  - GoogleUtilities (1.0.0):
+    - GoogleSymbolUtilities (~> 1.0)
+
+DEPENDENCIES:
+  - Google/AdMob (~> 1.0.0)
+
+SPEC CHECKSUMS:
+  Google: 5293f8df950bbae0f0bceee4ae130e9303b96d27
+  GoogleMobileAds: 90a6286fda350d81ca0844880bfcdc969f57610c
+  GoogleNetworkingUtilities: 48175a2dc1a60ab5dbe1d472fd995229e2d2b55a
+  GoogleSymbolUtilities: 6176554aba00bf07da5d6cd08881ff5da8c41b40
+  GoogleUtilities: 9507d8dc7c721ddf8143273ad48cf214b3ed5990
+
+COCOAPODS: 0.35.0
