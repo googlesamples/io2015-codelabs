@@ -19,6 +19,7 @@ body {
   margin: 0;
   background: #f4f4f4;
   min-height: 150vh;
+  overflow-x: hidden;
 }
 
 header {
