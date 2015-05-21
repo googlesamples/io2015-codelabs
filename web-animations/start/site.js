@@ -7,5 +7,4 @@
  * @param {Element} previous previously visible <section>
  */
 function animateToSection(link, current, previous) {
-  console.info('bleh', link);
 }
