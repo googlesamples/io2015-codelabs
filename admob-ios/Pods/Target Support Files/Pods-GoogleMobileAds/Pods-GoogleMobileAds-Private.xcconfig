@@ -1,6 +1,0 @@
-#include "Pods-GoogleMobileAds.xcconfig"
-FRAMEWORK_SEARCH_PATHS = ${PODS_GOOGLEMOBILEADS_FRAMEWORK_SEARCH_PATHS}
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/GoogleMobileAds" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Google" "${PODS_ROOT}/Headers/Public/Google/Google" "${PODS_ROOT}/Headers/Public/GoogleMobileAds" "${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities" "${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities" "${PODS_ROOT}/Headers/Public/GoogleUtilities"
-OTHER_LDFLAGS = ${PODS_GOOGLEMOBILEADS_OTHER_LDFLAGS} -ObjC
-PODS_ROOT = ${SRCROOT}

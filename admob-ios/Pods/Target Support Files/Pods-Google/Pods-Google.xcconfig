@@ -1,2 +1,0 @@
-PODS_GOOGLE_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/Google/Libraries" "$(PODS_ROOT)/Google/Libraries"
-PODS_GOOGLE_OTHER_LDFLAGS = -l"GGLAdMob" -l"GGLCore" -framework "AddressBook" -framework "SystemConfiguration"
