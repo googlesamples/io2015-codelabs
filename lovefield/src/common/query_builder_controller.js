@@ -36,12 +36,12 @@ var QueryBuilderController = function(
   ];
 
   this.timeWindows = [
-    '5days',
-    '1month',
-    '3months',
-    '6months',
+    '5 days',
+    '1 month',
+    '3 months',
+    '6 months',
     'YTD',
-    '1year'
+    '1 year'
   ];
 
   fetcherService.init().then(function() {
@@ -79,19 +79,19 @@ QueryBuilderController.prototype.getTimeWindowDates_ = function() {
   var end = new Date();
 
   switch (this.scope_.timeSelection) {
-    case '5days':
+    case this.timeWindows[0]:  // '5 days'
       start.setDate(end.getDate() - 5);
       break;
-    case '1month':
+    case this.timeWindows[1]:  // '1 month'
       start.setMonth(end.getMonth() - 1);
       break;
-    case '3months':
+    case this.timeWindows[2]:  // '3 months'
       start.setMonth(end.getMonth() - 3);
       break;
-    case '6months':
+    case this.timeWindows[3]:  // '6 months'
       start.setMonth(end.getMonth() - 6);
       break;
-    case 'YTD':
+    case this.timeWindows[4]:  // 'YTD'
       start = new Date(end.getFullYear(), 0);
       break;
     default:
