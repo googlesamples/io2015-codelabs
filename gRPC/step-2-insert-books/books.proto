@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package books;
+
+service BookService {
+  rpc List (Empty) returns (BookList) {}
+  rpc Insert (Book) returns (Empty) {}
+}
+
+message Empty {}
+
+message Book {
+  int64 id = 1;
+  string title = 2;
+  string author = 3;
+}
+
+message BookList {
+  repeated Book books = 1;
+}

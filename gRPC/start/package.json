@@ -1,0 +1,7 @@
+{
+  "name": "node-codelab",
+  "version": "1.0.0",
+  "description": "Google IO 2015 Node/gRPC codelab",
+  "dependencies": {
+  }
+}
