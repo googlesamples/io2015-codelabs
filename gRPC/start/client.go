@@ -35,9 +35,21 @@ func main() {
 	ctx := context.Background()
 	cmd, ok := commands[flag.Arg(0)]
 	if !ok {
-		log.Fatalf("Unknown command: %v", flag.Arg(0))
+		usage()
+	} else {
+		cmd.do(ctx, flag.Args()[1:]...)
 	}
-	cmd.do(ctx, flag.Args()[1:]...)
+}
+
+func usage() {
+	fmt.Println(`client.go is a command-line client for this codelab's gRPC service
+
+Usage:
+  client.go list                            List all books
+  client.go insert <id> <title> <author>    Insert a book
+  client.go get <id>                        Get a book by its ID
+  client.go delete <id>                     Delete a book by its ID
+  client.go watch                           Watch for inserted books`)
 }
 
 var commands = map[string]struct {
