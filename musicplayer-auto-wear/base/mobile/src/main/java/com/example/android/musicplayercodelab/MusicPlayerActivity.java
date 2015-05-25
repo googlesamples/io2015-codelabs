@@ -259,7 +259,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
                 mPlaybackManager.play(mCurrentMetadata);
 
                 /* ------------ CHANGE 5 - UNCOMMENT FOLLOWING LINES FOR PLAYBACK ON A SERVICE
-                startService(new Intent(MusicPlayerActivity.this, MusicService.class));
                 getMediaController().getTransportControls().playFromMediaId(
                          mCurrentMetadata.getDescription().getMediaId(), null);
                 // ------------ CHANGE 5 - END OF PLAYBACK ON A SERVICE SNIPPET */
