@@ -260,7 +260,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
                 /* ------------ CHANGE 5 - UNCOMMENT FOLLOWING LINES FOR PLAYBACK ON A SERVICE
                 getMediaController().getTransportControls().playFromMediaId(
-                         mCurrentMetadata.getDescription().getMediaId(), null);
+                        mCurrentMetadata.getDescription().getMediaId(), null);
                 // ------------ CHANGE 5 - END OF PLAYBACK ON A SERVICE SNIPPET */
 
             } else {

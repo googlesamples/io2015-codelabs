@@ -28,13 +28,12 @@
 
         <!-- Main activity for music browsing on phone -->
         <activity
-            android:name="com.example.android.musicplayercodelab.MusicPlayerActivity"
+            android:name=".MusicPlayerActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
     </application>
