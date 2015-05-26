@@ -1,0 +1,52 @@
+doctype html
+html(lang="en")
+  head
+    title Bookshelf
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto")
+    link(rel="stylesheet" href="//fonts.googleapis.com/css?family=Gentium+Book+Basic:700")
+    link(rel="stylesheet" href="/style.css")
+  body
+
+    header
+      nav
+        a(href="/") All Books
+        if user
+          a(href="/mine") My Library
+      section#account
+        if user
+          img(src=user.imageUrl)
+          span Logged in as #{user.name}
+          a(href="/logout") Sign out
+        else
+          a(href="/login") Sign in
+
+    section#books
+      if books.length
+        - each book in books
+          .book
+            if book.data.imageUrl
+              .cover
+                img(src=book.data.imageUrl title="#{book.data.title} by #{book.data.author}")
+            else
+              .info
+                .title= book.data.title
+                .by - by -
+                .author= book.data.author
+            a.delete(href="/books/delete?id=#{book.key.path[1]}") delete
+      else
+        .nobooks There are no books!
+
+    fieldset#add-book
+      legend Add Book
+      form(method="post" action="/books" enctype="multipart/form-data")
+        label
+          | Title
+          input(name="title" type="text" placeholder="eg. A Tale of Two Cities")
+        label
+          | Author
+          input(name="author" type="text" placeholder="eg. Charles Dickens")
+        label
+          | Cover image (optional)
+          input(name="cover" type="file")
+        input(type="submit" value="Add Book")

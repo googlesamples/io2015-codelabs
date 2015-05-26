@@ -1,0 +1,81 @@
+body {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  margin-bottom: 15px;
+}
+
+nav {
+  margin-bottom: 10px;
+}
+
+nav a {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#account span, #account img {
+  display: block;
+  margin: 0 auto;
+}
+
+#add-book {
+  padding: 10px;
+  margin: 20px auto;
+  width: 350px;
+}
+
+#add-book label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#add-book input {
+  margin-left: 10px;
+}
+
+#add-book input[type="submit"] {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.nobooks {
+  font-size: 22px;
+}
+
+.book {
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: top;
+  padding: 0;
+}
+
+.book .cover img {
+  display: block;
+  max-width: 150px;
+  max-height: 200px;
+}
+
+.book .info {
+  border: 5px outset gray;
+  padding: 10px;
+  width: 110px;
+  height: 180px;
+  font-family: 'Gentium Book Basic', serif;
+  font-weight: bold;
+}
+
+.book .info .title {
+  font-size: 20px;
+}
+
+.book .info .by {
+  margin: 5px 0;
+}
+
+.book a.delete {
+  display: inline-block;
+  margin-top: 5px;
+}
