@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Android Auto Messaging Codelab</string>
+    <string name="start_conversation">Start Conversation</string>
+</resources>
