@@ -20,7 +20,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // [START tracker_objc]
    // Set a white background so that patterns are showcased.
   _window.backgroundColor = [UIColor whiteColor];
 

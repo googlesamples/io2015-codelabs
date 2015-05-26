@@ -1,0 +1,6 @@
+runtime: custom
+vm: true
+api_version: 1
+module: default
+env_variables:
+  REDIRECT_URL: https://<project ID>.appspot.com/oauth2callback

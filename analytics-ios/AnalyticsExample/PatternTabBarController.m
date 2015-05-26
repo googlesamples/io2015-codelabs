@@ -20,7 +20,7 @@
 @implementation PatternTabBarController
 
 - (void)didTapShare:(id)sender {
-  // [START custom_event_objc]
+ 
 
 }
 

@@ -19,7 +19,6 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import <Google/Core.h>
 
 @interface AppDelegate ()
 
