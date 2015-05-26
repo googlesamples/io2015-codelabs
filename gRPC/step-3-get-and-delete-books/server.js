@@ -19,16 +19,14 @@ var server = new BooksServer({
       callback(null, {});
     },
     get: function(call, callback) {
-      var id = parseInt(call.request.id);
       for (var i = 0; i < books.length; i++)
-        if (books[i].id == id)
+        if (books[i].id == call.request.id)
           return callback(null, books[i]);
       callback({ code: grpc.status.NOT_FOUND, details: 'Not found' });
     },
     delete: function(call, callback) {
-      var id = parseInt(call.request.id);
       for (var i = 0; i < books.length; i++) {
-        if (books[i].id == id) {
+        if (books[i].id == call.request.id) {
           books.splice(i, 1);
           return callback(null, {});
         }

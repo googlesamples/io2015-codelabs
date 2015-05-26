@@ -12,7 +12,7 @@ service BookService {
 message Empty {}
 
 message Book {
-  int64 id = 1;
+  int32 id = 1;
   string title = 2;
   string author = 3;
 }
@@ -22,5 +22,5 @@ message BookList {
 }
 
 message BookIdRequest {
-  int64 id = 1;
+  int32 id = 1;
 }
