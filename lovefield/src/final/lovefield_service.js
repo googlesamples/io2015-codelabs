@@ -115,9 +115,33 @@ LovefieldService.prototype.buildSchema_ = function() {
 
 
 /**
+ * @typedef {{
+ *   Close: number,
+ *   Date: !Date,
+ *   High: number,
+ *   Low: number,
+ *   Open: number,
+ *   Stock: string,
+ *   Volume: number
+ * }}
+ */
+var HistoricalDataRaw;
+
+
+/**
+ * @typedef {{
+ *   CompanyName: string,
+ *   Sector: string,
+ *   Stock: string
+ * }}
+ */
+var StockInfoRaw;
+
+
+/**
  * Inserts data in the two tables, HistoricalData and StockInfo.
- * @param {!Array<!Object>} historicalDataRaw
- * @param {!Array<!Object>} stockInfoRaw
+ * @param {!Array<!HistoricalDataRaw>} historicalDataRaw
+ * @param {!Array<!StockInfoRaw>} stockInfoRaw
  * @return {!IThenable} A promise that is resolved after both tables have been
  *     populated.
  */
