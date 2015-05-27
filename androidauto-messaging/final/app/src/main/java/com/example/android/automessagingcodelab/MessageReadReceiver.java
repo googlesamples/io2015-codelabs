@@ -1,5 +1,3 @@
-package com.example.android.automessagingcodelab;
-
 /*
  * Copyright (C) 2015 The Android Open Source Project
  *
@@ -15,6 +13,8 @@ package com.example.android.automessagingcodelab;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package com.example.android.automessagingcodelab;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
