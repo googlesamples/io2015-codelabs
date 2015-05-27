@@ -7,6 +7,13 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
+        <!--
+            Explicitly specify that our app would like to send notifications to the Car.
+            This is a prerequisite to being able to send Notifications to auto.
+         -->
+        <meta-data android:name="com.google.android.gms.car.application"
+                   android:resource="@xml/automotive_app_desc"/>
+
         <activity
             android:name="com.example.android.automessagingcodelab.MainActivity"
             android:label="@string/app_name" >

@@ -21,9 +21,11 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.CarExtender;
+import android.support.v4.app.NotificationCompat.CarExtender.UnreadConversation;
 import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.RemoteInput;
 import android.util.Log;
-
 
 public class MessagingService extends IntentService {
     private static final String TAG = MessagingService.class.getSimpleName();
@@ -40,6 +42,7 @@ public class MessagingService extends IntentService {
             "com.example.android.carnotificationscodelab.ACTION_MESSAGE_REPLY";
     public static final String CONVERSATION_ID = "conversation_id";
     public static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
+    public static final String EOL = "\n";
 
     public MessagingService() {
         super(MessagingService.class.getSimpleName());
@@ -80,6 +83,29 @@ public class MessagingService extends IntentService {
 
         /// Add the code to create the UnreadConversation
 
+        // Build a RemoteInput for receiving voice input in a Car Notification
+        RemoteInput remoteInput = new RemoteInput.Builder(EXTRA_VOICE_REPLY).build();
+
+        // Building a Pending Intent for the reply action to trigger
+        PendingIntent replyIntent = PendingIntent.getBroadcast(getApplicationContext(),
+                conversationId,
+                getMessageReplyIntent(conversationId),
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // Create the UnreadConversation and populate it with the participant name,
+        // read and reply intents.
+        UnreadConversation.Builder unreadConversationBuilder =
+                new UnreadConversation.Builder(sender)
+                        .setLatestTimestamp(timestamp)
+                        .setReadPendingIntent(readPendingIntent)
+                        .setReplyAction(replyIntent, remoteInput);
+
+        // Note: Add messages from oldest to newest to the UnreadConversation.Builder
+        // Since we are sending a single message here we simply add the message.
+        // In a real world application there could be multiple messages which should be ordered
+        // and added from oldest to newest.
+        unreadConversationBuilder.addMessage(message);
+
         /// End create UnreadConversation
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
@@ -91,9 +117,11 @@ public class MessagingService extends IntentService {
                 .setContentTitle(sender)
                 .setContentIntent(readPendingIntent)
                 /// Extend the notification with CarExtender.
-
+                .extend(new CarExtender()
+                        .setUnreadConversation(unreadConversationBuilder.build()))
                 /// End
                 ;
+
 
         Log.d(TAG, "Sending notification "
                 + conversationId + " conversation: " + message);

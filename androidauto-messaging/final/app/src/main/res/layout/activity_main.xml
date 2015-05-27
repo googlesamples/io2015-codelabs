@@ -10,9 +10,11 @@
               android:paddingTop="@dimen/activity_vertical_margin"
               tools:context=".MainActivity">
 
+
     <Button
         android:id="@+id/start_conversation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start_conversation"/>
+
 </LinearLayout>
