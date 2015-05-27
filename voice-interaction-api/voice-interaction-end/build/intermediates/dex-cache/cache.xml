@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/exploded-aar/com.android.support/support-v13/21.0.2/libs/internal_impl-21.0.2.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="9346da9fb778af9e451211bbc3541daced174ba7">
+        <dex dex="/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-b2da323a1aa938a6bdd03a72f04a1cef8b31a0ab.jar" />
+    </item>
+    <item
+        jar="/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3">
+        <dex dex="/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/classes-545df0f8ec47ec164206fd03a618b26a9524f7a0.jar" />
+    </item>
+    <item
+        jar="/Users/bjames/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.2/support-annotations-21.0.2.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="99373741f99a0556ee293c41e8faa1ca3ae8a4e6">
+        <dex dex="/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/support-annotations-21.0.2-9e028911b91f8d54073f95ab6db1c5a354226b05.jar" />
+    </item>
+    <item
+        jar="/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="b017100da14f9c158c9f5f2f508333c224b24a7c">
+        <dex dex="/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/classes-71f5251ccc3fffd9c4143004d9cb1a3a396e1500.jar" />
+    </item>
+    <item
+        jar="/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/exploded-aar/com.android.support/support-v13/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="61965ae058916e6a57950dd61b0164dc866af19a">
+        <dex dex="/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/classes-6893b47ee9d24418a4a636b00ff12474e23dfeae.jar" />
+    </item>
+    <item
+        jar="/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/libs/internal_impl-21.0.2.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f">
+        <dex dex="/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-297d33ba2ac66618dd164ac63a86cafdbfeac823.jar" />
+    </item>
+
+</items>
