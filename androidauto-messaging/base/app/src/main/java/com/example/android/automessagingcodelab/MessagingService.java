@@ -33,11 +33,11 @@ public class MessagingService extends IntentService {
      * should be sent by this Service.
      */
     public static final String SEND_MESSAGE_ACTION =
-            "com.example.anroid.carnotificationscodelab.ACTION_SEND_MESSAGE";
+            "com.example.anroid.automessagingcodelab.ACTION_SEND_MESSAGE";
     public static final String READ_ACTION =
-            "com.example.android.carnotificationscodelab.ACTION_MESSAGE_READ";
+            "com.example.android.automessagingcodelab.ACTION_MESSAGE_READ";
     public static final String REPLY_ACTION =
-            "com.example.android.carnotificationscodelab.ACTION_MESSAGE_REPLY";
+            "com.example.android.automessagingcodelab.ACTION_MESSAGE_REPLY";
     public static final String CONVERSATION_ID = "conversation_id";
     public static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
 
