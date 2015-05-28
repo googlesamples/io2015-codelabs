@@ -1,7 +1,0 @@
-/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/classes/debug
-/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-b2da323a1aa938a6bdd03a72f04a1cef8b31a0ab.jar
-/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/support-annotations-21.0.2-9e028911b91f8d54073f95ab6db1c5a354226b05.jar
-/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/classes-6893b47ee9d24418a4a636b00ff12474e23dfeae.jar
-/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/classes-71f5251ccc3fffd9c4143004d9cb1a3a396e1500.jar
-/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-297d33ba2ac66618dd164ac63a86cafdbfeac823.jar
-/Users/bjames/voice-interaction-samples/VoiceCamera/Application/build/intermediates/pre-dexed/debug/classes-545df0f8ec47ec164206fd03a618b26a9524f7a0.jar
