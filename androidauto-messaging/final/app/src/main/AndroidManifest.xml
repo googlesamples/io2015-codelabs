@@ -41,13 +41,13 @@
 
         <receiver android:name="com.example.android.automessagingcodelab.MessageReadReceiver">
             <intent-filter>
-                <action android:name="com.example.android.carnotificationscodelab.ACTION_MESSAGE_READ"/>
+                <action android:name="com.example.android.automessagingcodelab.ACTION_MESSAGE_READ"/>
             </intent-filter>
         </receiver>
 
         <receiver android:name="com.example.android.automessagingcodelab.MessageReplyReceiver">
             <intent-filter>
-                <action android:name="com.example.android.carnotificationscodelab.ACTION_MESSAGE_REPLY"/>
+                <action android:name="com.example.android.automessagingcodelab.ACTION_MESSAGE_REPLY"/>
             </intent-filter>
         </receiver>
 

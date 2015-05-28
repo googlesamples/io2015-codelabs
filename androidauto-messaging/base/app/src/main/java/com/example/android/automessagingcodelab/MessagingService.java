@@ -21,7 +21,10 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.CarExtender;
+import android.support.v4.app.NotificationCompat.CarExtender.UnreadConversation;
 import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.RemoteInput;
 import android.util.Log;
 
 
