@@ -33,4 +33,16 @@
         android:layout_height="wrap_content"
         android:text="@string/start_conversation"/>
 
+    <TextView
+        android:id="@+id/help_text"
+        android:text="@string/help_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/context_text"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/text_height"/>
+
 </LinearLayout>

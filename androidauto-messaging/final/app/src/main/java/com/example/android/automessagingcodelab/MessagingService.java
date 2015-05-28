@@ -35,7 +35,7 @@ public class MessagingService extends IntentService {
      * should be sent by this Service.
      */
     public static final String SEND_MESSAGE_ACTION =
-            "com.example.anroid.automessagingcodelab.ACTION_SEND_MESSAGE";
+            "com.example.android.automessagingcodelab.ACTION_SEND_MESSAGE";
     public static final String READ_ACTION =
             "com.example.android.automessagingcodelab.ACTION_MESSAGE_READ";
     public static final String REPLY_ACTION =
