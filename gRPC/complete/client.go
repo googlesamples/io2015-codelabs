@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	address = flag.String("address", "localhost:50051", "Address of service")
+	address = flag.String("address", "127.0.0.1:50051", "Address of service")
 )
 
 // GetClient attempts to dial the specified address flag and returns a service
@@ -116,7 +116,7 @@ func doGet(ctx context.Context, args ...string) {
 	if err != nil {
 		log.Fatalf("Get book (%v): %v", id, err)
 	}
-	fmt.Println("Got response:")
+	fmt.Println("Server response:")
 	printRespAsJson(r)
 }
 
@@ -137,7 +137,7 @@ func doDelete(ctx context.Context, args ...string) {
 	if err != nil {
 		log.Fatalf("Get book (%v): %v", id, err)
 	}
-	fmt.Println("Got response:")
+	fmt.Println("Server response:")
 	printRespAsJson(r)
 }
 
@@ -151,7 +151,7 @@ func doList(ctx context.Context, args ...string) {
 	if err != nil {
 		log.Fatalf("List books: %v", err)
 	}
-	fmt.Printf("Got %v books.\n", len(rs.GetBooks()))
+	fmt.Printf("Server sent %v book(s).\n", len(rs.GetBooks()))
 	printRespAsJson(rs)
 }
 
@@ -177,6 +177,7 @@ func doInsert(ctx context.Context, args ...string) {
 	if err != nil {
 		log.Fatalf("Insert book (%v): %v", book, err)
 	}
+	fmt.Println("Server response:")
 	printRespAsJson(r)
 }
 
@@ -198,6 +199,7 @@ func doWatch(ctx context.Context, args ...string) {
 		if err != nil {
 			log.Fatalf("Watch books stream: %v", err)
 		}
+		fmt.Println("Server stream data received:")
 		printRespAsJson(book)
 	}
 }

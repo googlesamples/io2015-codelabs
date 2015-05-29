@@ -21,5 +21,5 @@ var server = new BooksServer({
   }
 });
 
-server.bind('0.0.0.0:50051');
+server.bind('127.0.0.1:50051');
 server.listen();

@@ -4,3 +4,4 @@ Pods/
 Podfile.lock
 xcuserdata/
 *.xcworkspace/
+.gradle

@@ -27,7 +27,6 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.RemoteInput;
 import android.util.Log;
 
-import com.example.android.carnotificationscodelab.R;
 
 public class MessagingService extends IntentService {
     private static final String TAG = MessagingService.class.getSimpleName();
@@ -37,14 +36,13 @@ public class MessagingService extends IntentService {
      * should be sent by this Service.
      */
     public static final String SEND_MESSAGE_ACTION =
-            "com.example.anroid.carnotificationscodelab.ACTION_SEND_MESSAGE";
+            "com.example.anroid.automessagingcodelab.ACTION_SEND_MESSAGE";
     public static final String READ_ACTION =
-            "com.example.android.carnotificationscodelab.ACTION_MESSAGE_READ";
+            "com.example.android.automessagingcodelab.ACTION_MESSAGE_READ";
     public static final String REPLY_ACTION =
-            "com.example.android.carnotificationscodelab.ACTION_MESSAGE_REPLY";
+            "com.example.android.automessagingcodelab.ACTION_MESSAGE_REPLY";
     public static final String CONVERSATION_ID = "conversation_id";
     public static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
-    public static final String EOL = "\n";
 
     public MessagingService() {
         super(MessagingService.class.getSimpleName());
@@ -83,43 +81,22 @@ public class MessagingService extends IntentService {
                 getMessageReadIntent(conversationId),
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // Build a RemoteInput for receiving voice input in a Car Notification
-        RemoteInput remoteInput = new RemoteInput.Builder(EXTRA_VOICE_REPLY).build();
+        /// Add the code to create the UnreadConversation
 
-        // Building a Pending Intent for the reply action to trigger
-        PendingIntent replyIntent = PendingIntent.getBroadcast(getApplicationContext(),
-                conversationId,
-                getMessageReplyIntent(conversationId),
-                PendingIntent.FLAG_UPDATE_CURRENT);
-
-        // Create the UnreadConversation and populate it with the participant name,
-        // read and reply intents.
-        UnreadConversation.Builder unreadConversationBuilder =
-                new UnreadConversation.Builder(sender)
-                        .setLatestTimestamp(timestamp)
-                        .setReadPendingIntent(readPendingIntent)
-                        .setReplyAction(replyIntent, remoteInput);
-
-        // Note: Add messages from oldest to newest to the UnreadConversation.Builder
-        StringBuilder messageForNotification = new StringBuilder();
-        // Since we are sending a single message here we simply add the message.
-        // In a real world application there could be multiple messages which should be ordered
-        // and added from oldest to newest.
-        unreadConversationBuilder.addMessage(message);
-        messageForNotification.append(message).append(EOL);
+        /// End create UnreadConversation
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
                 .setSmallIcon(R.drawable.notification_icon)
                 .setLargeIcon(BitmapFactory.decodeResource(
                         getApplicationContext().getResources(), R.drawable.android_contact))
-                .setContentText(messageForNotification.toString())
+                .setContentText(message)
                 .setWhen(timestamp)
                 .setContentTitle(sender)
                 .setContentIntent(readPendingIntent)
-                .extend(new CarExtender()
-                        .setUnreadConversation(unreadConversationBuilder.build())
-                        .setColor(getApplicationContext()
-                                .getResources().getColor(R.color.default_color_light)));
+                /// Extend the notification with CarExtender.
+
+                /// End
+                ;
 
         Log.d(TAG, "Sending notification "
                 + conversationId + " conversation: " + message);

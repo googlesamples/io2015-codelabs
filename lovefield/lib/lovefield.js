@@ -13,7 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-'use strict';var $jscomp = {scope:{}}, goog = goog || {};
+(function(){'use strict';var $jscomp = {scope:{}}, goog = goog || {};
 goog.global = this;
 goog.isDef = function(val) {
   return void 0 !== val;
@@ -2325,7 +2325,7 @@ goog.Promise.returnEntry_ = function(entry) {
 goog.Promise.RESOLVE_FAST_PATH_ = function() {
 };
 goog.Promise.resolve = function(opt_value) {
-  return new goog.Promise(goog.Promise.RESOLVE_FAST_PATH_, opt_value);
+  return opt_value instanceof goog.Promise ? opt_value : new goog.Promise(goog.Promise.RESOLVE_FAST_PATH_, opt_value);
 };
 goog.Promise.reject = function(opt_reason) {
   return new goog.Promise(function(resolve, reject) {
@@ -5654,10 +5654,12 @@ lf.backstore.WebSql.prototype.init = function(opt_onUpgrade) {
   };
   return new goog.Promise(goog.bind(function(resolve, reject) {
     try {
-      window.openDatabase(this.schema_.name(), "", this.schema_.name(), this.size_, goog.bind(function(db) {
-        this.db_ = db;
-        this.checkVersion_(onUpgrade).then(resolve, reject);
-      }, this));
+      var db = window.openDatabase(this.schema_.name(), "", this.schema_.name(), this.size_);
+      if (goog.isDefAndNotNull(db)) {
+        this.db_ = db, this.checkVersion_(onUpgrade).then(resolve, reject);
+      } else {
+        throw new lf.Exception(lf.Exception.Type.NOT_SUPPORTED, "Unable to open database.");
+      }
     } catch (e) {
       reject(e);
     }
@@ -7326,6 +7328,7 @@ lf.schema.Table = function(name, cols, indices, persistentIndex) {
   this.persistentIndex_ = persistentIndex;
   this.alias_ = null;
 };
+goog.exportSymbol("lf.schema.Table", lf.schema.Table);
 lf.schema.Table.prototype.getName = function() {
   return this.name_;
 };
@@ -7340,15 +7343,16 @@ lf.schema.Table.prototype.as = function(name) {
   clone.alias_ = name;
   return clone;
 };
-goog.exportSymbol("lf.schema.Table.prototype.createRow", lf.schema.Table.prototype.createRow);
-goog.exportSymbol("lf.schema.Table.prototype.deserializeRow", lf.schema.Table.prototype.deserializeRow);
+goog.exportProperty(lf.schema.Table.prototype, "as", lf.schema.Table.prototype.as);
+goog.exportProperty(lf.schema.Table.prototype, "createRow", lf.schema.Table.prototype.createRow);
+goog.exportProperty(lf.schema.Table.prototype, "deserializeRow", lf.schema.Table.prototype.deserializeRow);
 lf.schema.Table.prototype.getIndices = function() {
   return this.indices_;
 };
 lf.schema.Table.prototype.getColumns = function() {
   return this.columns_;
 };
-goog.exportSymbol("lf.schema.Table.prototype.getConstraint", lf.schema.Table.prototype.getConstraint);
+goog.exportProperty(lf.schema.Table.prototype, "getConstraint", lf.schema.Table.prototype.getConstraint);
 lf.schema.Table.prototype.persistentIndex = function() {
   return this.persistentIndex_;
 };
@@ -8191,7 +8195,7 @@ lf.query.InsertBuilder.prototype.assertExecPreconditions = function() {
     throw new lf.Exception(lf.Exception.Type.SYNTAX, "Invalid usage of insert()");
   }
   if (context.allowReplace && goog.isNull(context.into.getConstraint().getPrimaryKey())) {
-    throw new lf.Exception(lf.Exception.Type.SYNTAX, "Attemted to insert or replace in a table with no primary key.");
+    throw new lf.Exception(lf.Exception.Type.SYNTAX, "Attempted to insert or replace in a table with no primary key.");
   }
 };
 lf.query.InsertBuilder.prototype.into = function(table) {
@@ -8610,7 +8614,7 @@ lf.proc.SelectLogicalPlanGenerator.prototype.generateInternal = function() {
   return planRewriter.generate();
 };
 lf.proc.SelectLogicalPlanGenerator.prototype.generateNodes_ = function() {
-  this.generateTableAcessNodes_();
+  this.generateTableAccessNodes_();
   this.generateCrossProductNode_();
   this.generateSelectNode_();
   this.generateOrderByNode_();
@@ -8630,7 +8634,7 @@ lf.proc.SelectLogicalPlanGenerator.prototype.connectNodes_ = function() {
   });
   return rootNode;
 };
-lf.proc.SelectLogicalPlanGenerator.prototype.generateTableAcessNodes_ = function() {
+lf.proc.SelectLogicalPlanGenerator.prototype.generateTableAccessNodes_ = function() {
   this.tableAccessNodes_ = this.query.from.map(function(table) {
     return new lf.proc.TableAccessNode(table);
   }, this);
@@ -9710,13 +9714,13 @@ lf.base.init = function(global, opt_options) {
       backStore = new lf.backstore.IndexedDB(global, schema);
   }
   global.registerService(lf.service.BACK_STORE, backStore);
+  var indexStore = new lf.index.MemoryIndexStore;
+  global.registerService(lf.service.INDEX_STORE, indexStore);
   return backStore.init(options.onUpgrade).then(function() {
     var queryEngine = new lf.proc.DefaultQueryEngine(global);
     global.registerService(lf.service.QUERY_ENGINE, queryEngine);
     var runner = new lf.proc.Runner;
     global.registerService(lf.service.RUNNER, runner);
-    var indexStore = new lf.index.MemoryIndexStore;
-    global.registerService(lf.service.INDEX_STORE, indexStore);
     var observerRegistry = new lf.ObserverRegistry;
     global.registerService(lf.service.OBSERVER_REGISTRY, observerRegistry);
     return indexStore.init(schema);
@@ -10444,4 +10448,4 @@ lf.structs.MapPolyFill_.prototype.values = function() {
 };
 goog.exportSymbol("lf.structs.MapPolyFill_.prototype.values", lf.structs.MapPolyFill_.prototype.values);
 lf.structs.Map = goog.isDef(window.Map) && goog.isDef(window.Map.prototype.keys) ? window.Map : lf.structs.MapPolyFill_;
-
+}.bind(window))()
