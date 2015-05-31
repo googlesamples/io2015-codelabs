@@ -36,6 +36,7 @@
 		5F7738611AFB4D5800C5E8D4 /* icon-wb_incandescent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F77384B1AFB4D5800C5E8D4 /* icon-wb_incandescent@2x.png */; };
 		5F7738631AFB4D5800C5E8D4 /* icon-wb_incandescent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F77384C1AFB4D5800C5E8D4 /* icon-wb_incandescent@3x.png */; };
 		5FC04A7F1AF1DCAA00F787CA /* PatternTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC04A7E1AF1DCAA00F787CA /* PatternTabBarController.m */; };
+		81FA809E1B17AEE6009F8B8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A53591ADE670C00F81DF0 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -237,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F77385D1AFB4D5800C5E8D4 /* icon-tag_faces@3x.png in Resources */,
+				81FA809E1B17AEE6009F8B8E /* Main.storyboard in Resources */,
 				5F7738591AFB4D5800C5E8D4 /* icon-tag_faces.png in Resources */,
 				5F7738341AFB4A0600C5E8D4 /* wb_incandescent@3x.png in Resources */,
 				5F77382A1AFB4A0600C5E8D4 /* favorite@2x.png in Resources */,
