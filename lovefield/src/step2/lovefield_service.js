@@ -128,7 +128,14 @@ var StockInfoRaw;
  */
 LovefieldService.prototype.insertData = function(
     historicalDataRaw, stockInfoRaw) {
-  // Codelab TODO Step2: Insert the raw data to the database.
+  // Generating Lovefield rows from the raw rows.
+  var stockInfoRows = stockInfoRaw.map(
+      function(obj) { return this.si_.createRow(obj); }, this);
+  var historicalDataRows = historicalDataRaw.map(
+      function(obj) { return this.hd_.createRow(obj); }, this);
+
+  // Codelab TODO Step2: Insert stockInfoRows and historicalDataRows to the
+  // database.
   return Promise.resolve();
 };
 

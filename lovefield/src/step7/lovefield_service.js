@@ -152,6 +152,7 @@ var StockInfoRaw;
  */
 LovefieldService.prototype.insertData = function(
     historicalDataRaw, stockInfoRaw) {
+  // Generating Lovefield rows from the raw rows.
   var stockInfoRows = stockInfoRaw.map(
       function(obj) { return this.si_.createRow(obj); }, this);
   var historicalDataRows = historicalDataRaw.map(
