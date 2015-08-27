@@ -24,6 +24,7 @@ import android.app.Fragment;
 import android.app.VoiceInteractor;
 import android.app.VoiceInteractor.PickOptionRequest;
 import android.app.VoiceInteractor.PickOptionRequest.Option;
+import android.app.VoiceInteractor.Prompt;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -49,6 +50,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.util.Size;
@@ -399,8 +401,10 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
 
             Bundle extras = new Bundle();
             extras.putParcelable("context_uri", contextUri);
+
+            VoiceInteractor.Prompt prompt = new VoiceInteractor.Prompt("Here it is");
             activity.getVoiceInteractor().submitRequest(
-                    new VoiceInteractor.CompleteVoiceRequest("Here it is", extras) {
+                  new VoiceInteractor.CompleteVoiceRequest(prompt, extras) {
                         @Override
                         public void onCompleteResult(Bundle result) {
                             super.onCompleteResult(result);
@@ -408,9 +412,10 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
                             Intent intent = new Intent();
                             intent.setAction(Intent.ACTION_VIEW);
                             intent.setDataAndType(Uri.parse("file://" + mFile.getAbsolutePath()), "image/*");
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            getActivity().finish();
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addFlags(Intent.FLAG_DEBUG_LOG_RESOLUTION);
+                            tearDown();
                             startActivity(intent);
                         }
                     });
@@ -419,6 +424,13 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
             message.obj = text;
             mMessageHandler.sendMessage(message);
         }
+    }
+
+    private void tearDown() {
+        closeCamera();
+        mOrientationListener.disable();
+        stopBackgroundThread();
+        getActivity().finish();
     }
 
     /**
@@ -593,29 +605,32 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
 
     private void startVoiceTrigger() {
         Log.d(TAG, "startVoiceTrigger: ");
-        Option option = new Option("cheese");
+        Option option = new Option("cheese", 1);
         option.addSynonym("ready");
         option.addSynonym("go");
         option.addSynonym("take it");
         option.addSynonym("ok");
 
+        VoiceInteractor.Prompt prompt = new VoiceInteractor.Prompt("Say Cheese");
         getActivity().getVoiceInteractor()
-                .submitRequest(new PickOptionRequest("Say Cheese", new Option[]{option}, null) {
-                    @Override
-                    public void onPickOptionResult(boolean finished, Option[] selections, Bundle result) {
-                        if (finished && selections.length == 1) {
-                            Message message = Message.obtain();
-                            message.obj = result;
-                            takePicture();
-                        } else {
-                            getActivity().finish();
-                        }
-                    }
-                    @Override
-                    public void onCancel() {
+            .submitRequest(new PickOptionRequest(prompt, new Option[]{option}, null) {
+                @Override
+                public void onPickOptionResult(boolean finished, Option[] selections, Bundle result) {
+                    if (finished && selections.length == 1) {
+                        Message message = Message.obtain();
+                        message.obj = result;
+                        takePicture();
+                    } else {
                         getActivity().finish();
+                        tearDown();
                     }
-                });
+                }
+                @Override
+                public void onCancel() {
+                    getActivity().finish();
+                    tearDown();
+                }
+            });
     }
 
     @Override
@@ -776,6 +791,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
      */
     private void stopBackgroundThread() {
         Log.d(TAG, "stopBackgroundThread: ");
+        if (mBackgroundThread == null)
+            return;
         mBackgroundThread.quitSafely();
         try {
             mBackgroundThread.join();
