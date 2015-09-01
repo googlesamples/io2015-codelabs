@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
@@ -47,16 +48,10 @@ public class StopwatchActivity extends Activity {
     // 60 seconds for updating the clock in active mode
     private static final long MINUTE_INTERVAL_MS = TimeUnit.SECONDS.toMillis(60);
 
-    @SuppressLint("SimpleDateFormat")
-    private static final SimpleDateFormat mTimeFormat = new SimpleDateFormat("HH:mm");
-    // Calendar object and date format for displaying the time in ambient mode
-    private Calendar mCalendar;
-
     // Screen components
     private TextView mTimeView;
     private Button mStartStopButton;
     private Button mResetButton;
-    private TextView mClockView;
 
     // The last time that the stop watch was updated or the start time.
     private long mLastTick = 0L;
@@ -74,7 +69,6 @@ public class StopwatchActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        mCalendar = GregorianCalendar.getInstance();
         setContentView(R.layout.activity_stopwatch);
 
         // Get on screen items
@@ -82,8 +76,6 @@ public class StopwatchActivity extends Activity {
         mResetButton = (Button) findViewById(R.id.resetbtn);
         mTimeView = (TextView) findViewById(R.id.timeview);
         resetTimeView(); // initialise TimeView
-
-        mClockView = (TextView) findViewById(R.id.clock);
 
         mStartStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,12 +145,6 @@ public class StopwatchActivity extends Activity {
         } else {
             mTimeView.setText(minutes + ":" + seconds);
         }
-    }
-
-    private void updateClock() {
-        Date time = mCalendar.getTime();
-        Log.d(TAG, "updateClock: " + mTimeFormat.format(time));
-        mClockView.setText(mTimeFormat.format(time));
     }
 
     private void toggleStartStop() {
@@ -238,7 +224,6 @@ public class StopwatchActivity extends Activity {
         @Override
         public void handleUpdate(StopwatchActivity stopwatchActivity) {
             long timeMs = System.currentTimeMillis();
-            stopwatchActivity.updateClock();
             long delayMs = MINUTE_INTERVAL_MS - (timeMs % MINUTE_INTERVAL_MS);
             Log.d(TAG, "NOT ambient - delaying by: " + delayMs);
             stopwatchActivity.mActiveClockUpdateHandler

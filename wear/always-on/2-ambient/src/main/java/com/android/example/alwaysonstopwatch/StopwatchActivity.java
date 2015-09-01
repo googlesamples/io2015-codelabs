@@ -27,6 +27,7 @@ import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
@@ -49,17 +50,12 @@ public class StopwatchActivity extends WearableActivity {
     // 60 seconds for updating the clock in active mode
     private static final long MINUTE_INTERVAL_MS = TimeUnit.SECONDS.toMillis(60);
 
-    @SuppressLint("SimpleDateFormat")
-    private static final SimpleDateFormat mTimeFormat = new SimpleDateFormat("HH:mm");
-    // Calendar object and date format for displaying the time in ambient mode
-    private Calendar mCalendar;
-
     // Screen components
     private TextView mTimeView;
     private Button mStartStopButton;
     private Button mResetButton;
     private View mBackground;
-    private TextView mClockView;
+    private TextClock mClockView;
     private TextView mNotice;
 
 
@@ -80,7 +76,6 @@ public class StopwatchActivity extends WearableActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCalendar = GregorianCalendar.getInstance();
         setContentView(R.layout.activity_stopwatch);
         setAmbientEnabled();
 
@@ -91,7 +86,7 @@ public class StopwatchActivity extends WearableActivity {
         resetTimeView(); // initialise TimeView
 
         mBackground = findViewById(R.id.gridbackground);
-        mClockView = (TextView) findViewById(R.id.clock);
+        mClockView = (TextClock) findViewById(R.id.clock);
         mNotice = (TextView) findViewById(R.id.notice);
         mNotice.getPaint().setAntiAlias(false);
         mActiveBackgroundColor = ContextCompat.getColor(this, R.color.activeBackground);
@@ -167,12 +162,6 @@ public class StopwatchActivity extends WearableActivity {
         }
     }
 
-    private void updateClock() {
-        Date time = mCalendar.getTime();
-        Log.d(TAG, "updateClock: " + mTimeFormat.format(time));
-        mClockView.setText(mTimeFormat.format(time));
-    }
-
     private void toggleStartStop() {
         Log.d(TAG, "mRunning: " + mRunning);
         if (mRunning) {
@@ -217,8 +206,6 @@ public class StopwatchActivity extends WearableActivity {
 
         mClockView.setTextColor(Color.WHITE);
         mClockView.getPaint().setAntiAlias(false);
-
-        updateClock();
     }
 
     @Override
@@ -303,7 +290,6 @@ public class StopwatchActivity extends WearableActivity {
         @Override
         public void handleUpdate(StopwatchActivity stopwatchActivity) {
             long timeMs = System.currentTimeMillis();
-            stopwatchActivity.updateClock();
             long delayMs = MINUTE_INTERVAL_MS - (timeMs % MINUTE_INTERVAL_MS);
             Log.d(TAG, "NOT ambient - delaying by: " + delayMs);
             stopwatchActivity.mActiveClockUpdateHandler
