@@ -22,11 +22,11 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
@@ -51,8 +51,6 @@ public class StopwatchActivity extends WearableActivity {
 
     @SuppressLint("SimpleDateFormat")
     private static final SimpleDateFormat mTimeFormat = new SimpleDateFormat("HH:mm");
-    @SuppressLint("SimpleDateFormat")
-    private static final SimpleDateFormat mDebugTimeFormat = new SimpleDateFormat("HH:mm:ss");
     // Calendar object and date format for displaying the time in ambient mode
     private Calendar mCalendar;
 
@@ -60,7 +58,7 @@ public class StopwatchActivity extends WearableActivity {
     private TextView mTimeView;
     private Button mStartStopButton;
     private Button mResetButton;
-    private GridLayout mBackground;
+    private View mBackground;
     private TextView mClockView;
     private TextView mNotice;
 
@@ -87,17 +85,17 @@ public class StopwatchActivity extends WearableActivity {
         setAmbientEnabled();
 
         // Get on screen items
-        mStartStopButton = (Button) findViewById(R.id.btn_start_stop);
-        mResetButton = (Button) findViewById(R.id.btn_reset);
-        mTimeView = (TextView) findViewById(R.id.time_view);
+        mStartStopButton = (Button) findViewById(R.id.startstopbtn);
+        mResetButton = (Button) findViewById(R.id.resetbtn);
+        mTimeView = (TextView) findViewById(R.id.timeview);
         resetTimeView(); // initialise TimeView
 
-        mBackground = (GridLayout) findViewById(R.id.grid_background);
+        mBackground = findViewById(R.id.gridbackground);
         mClockView = (TextView) findViewById(R.id.clock);
         mNotice = (TextView) findViewById(R.id.notice);
         mNotice.getPaint().setAntiAlias(false);
-        mActiveBackgroundColor = getResources().getColor(R.color.activeBackground);
-        mActiveForegroundColor = getResources().getColor(R.color.activeText);
+        mActiveBackgroundColor = ContextCompat.getColor(this, R.color.activeBackground);
+        mActiveForegroundColor = ContextCompat.getColor(this, R.color.activeText);
 
         mStartStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -264,6 +262,7 @@ public class StopwatchActivity extends WearableActivity {
      * Simplify update handling for different types of updates.
      */
     private static abstract class UpdateHandler extends Handler {
+
         private final WeakReference<StopwatchActivity> mStopwatchActivityWeakReference;
 
         public UpdateHandler(StopwatchActivity reference) {
@@ -296,18 +295,19 @@ public class StopwatchActivity extends WearableActivity {
      * Handle clock updates every minute.
      */
     private static class UpdateClockHandler extends UpdateHandler {
+
         public UpdateClockHandler(StopwatchActivity reference) {
             super(reference);
         }
 
         @Override
         public void handleUpdate(StopwatchActivity stopwatchActivity) {
-                long timeMs = System.currentTimeMillis();
-                stopwatchActivity.updateClock();
-                long delayMs = MINUTE_INTERVAL_MS - (timeMs % MINUTE_INTERVAL_MS);
-                Log.d(TAG, "NOT ambient - delaying by: " + delayMs);
-                stopwatchActivity.mActiveClockUpdateHandler
-                        .sendEmptyMessageDelayed(R.id.msg_update, delayMs);
+            long timeMs = System.currentTimeMillis();
+            stopwatchActivity.updateClock();
+            long delayMs = MINUTE_INTERVAL_MS - (timeMs % MINUTE_INTERVAL_MS);
+            Log.d(TAG, "NOT ambient - delaying by: " + delayMs);
+            stopwatchActivity.mActiveClockUpdateHandler
+                    .sendEmptyMessageDelayed(R.id.msg_update, delayMs);
         }
     }
 
@@ -315,6 +315,7 @@ public class StopwatchActivity extends WearableActivity {
      * Handle stopwatch changes in active mode.
      */
     private static class UpdateStopwatchHandler extends UpdateHandler {
+
         public UpdateStopwatchHandler(StopwatchActivity reference) {
             super(reference);
         }

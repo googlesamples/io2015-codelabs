@@ -16,9 +16,9 @@
   -->
 
 <resources>
-    <item name="activeBackground" type="color">#FF09bcd3</item>
-    <item name="activeText" type="color">#FF455b64</item>
-    <item name="activeButtonBackground" type="color">#FFFFFFFF</item>
-    <item name="activeButtonRipple" type="color">#FFFFFFFF</item>
+    <color name="activeBackground">#09bcd3</color>
+    <color name="activeText">#455b64</color>
+    <color name="activeButtonBackground">@color/white</color>
+    <color name="activeButtonRipple">@color/white</color>
 
 </resources>

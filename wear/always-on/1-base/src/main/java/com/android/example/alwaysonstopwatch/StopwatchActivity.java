@@ -18,10 +18,6 @@ package com.android.example.alwaysonstopwatch;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -53,8 +49,6 @@ public class StopwatchActivity extends Activity {
 
     @SuppressLint("SimpleDateFormat")
     private static final SimpleDateFormat mTimeFormat = new SimpleDateFormat("HH:mm");
-    @SuppressLint("SimpleDateFormat")
-    private static final SimpleDateFormat mDebugTimeFormat = new SimpleDateFormat("HH:mm:ss");
     // Calendar object and date format for displaying the time in ambient mode
     private Calendar mCalendar;
 
@@ -84,9 +78,9 @@ public class StopwatchActivity extends Activity {
         setContentView(R.layout.activity_stopwatch);
 
         // Get on screen items
-        mStartStopButton = (Button) findViewById(R.id.btn_start_stop);
-        mResetButton = (Button) findViewById(R.id.btn_reset);
-        mTimeView = (TextView) findViewById(R.id.time_view);
+        mStartStopButton = (Button) findViewById(R.id.startstopbtn);
+        mResetButton = (Button) findViewById(R.id.resetbtn);
+        mTimeView = (TextView) findViewById(R.id.timeview);
         resetTimeView(); // initialise TimeView
 
         mClockView = (TextView) findViewById(R.id.clock);
@@ -203,6 +197,7 @@ public class StopwatchActivity extends Activity {
      * Simplify update handling for different types of updates.
      */
     private static abstract class UpdateHandler extends Handler {
+
         private final WeakReference<StopwatchActivity> mStopwatchActivityWeakReference;
 
         public UpdateHandler(StopwatchActivity reference) {
@@ -235,6 +230,7 @@ public class StopwatchActivity extends Activity {
      * Handle clock updates every minute.
      */
     private static class UpdateClockHandler extends UpdateHandler {
+
         public UpdateClockHandler(StopwatchActivity reference) {
             super(reference);
         }
@@ -254,6 +250,7 @@ public class StopwatchActivity extends Activity {
      * Handle stopwatch changes in active mode.
      */
     private static class UpdateStopwatchHandler extends UpdateHandler {
+
         public UpdateStopwatchHandler(StopwatchActivity reference) {
             super(reference);
         }
