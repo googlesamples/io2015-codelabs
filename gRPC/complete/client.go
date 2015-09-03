@@ -23,7 +23,7 @@ var (
 // client and its underlying connection. If it is unable to make a connection,
 // it dies.
 func GetClient() (*grpc.ClientConn, pb.BookServiceClient) {
-	conn, err := grpc.Dial(*address, grpc.WithTimeout(5*time.Second))
+	conn, err := grpc.Dial(*address, grpc.WithTimeout(5*time.Second), grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
