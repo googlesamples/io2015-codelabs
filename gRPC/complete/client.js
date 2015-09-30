@@ -2,7 +2,7 @@ var grpc = require('grpc');
 
 var booksProto = grpc.load('books.proto');
 
-var client = new booksProto.books.BookService('127.0.0.1:50051');
+var client = new booksProto.books.BookService('127.0.0.1:50051', grpc.Credentials.createInsecure());
 
 function printResponse(error, response) {
   if (error)

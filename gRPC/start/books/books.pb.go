@@ -17,6 +17,8 @@ It has these top-level messages:
 package books
 
 import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
 
 import (
 	context "golang.org/x/net/context"
@@ -24,11 +26,9 @@ import (
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ context.Context
-var _ grpc.ClientConn
-
-// Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
+var _ = fmt.Errorf
+var _ = math.Inf
 
 type Empty struct {
 }
@@ -38,7 +38,7 @@ func (m *Empty) String() string { return proto.CompactTextString(m) }
 func (*Empty) ProtoMessage()    {}
 
 type Book struct {
-	Id     int64  `protobuf:"varint,1,opt,name=id" json:"id,omitempty"`
+	Id     int32  `protobuf:"varint,1,opt,name=id" json:"id,omitempty"`
 	Title  string `protobuf:"bytes,2,opt,name=title" json:"title,omitempty"`
 	Author string `protobuf:"bytes,3,opt,name=author" json:"author,omitempty"`
 }
@@ -63,15 +63,16 @@ func (m *BookList) GetBooks() []*Book {
 }
 
 type BookIdRequest struct {
-	Id int64 `protobuf:"varint,1,opt,name=id" json:"id,omitempty"`
+	Id int32 `protobuf:"varint,1,opt,name=id" json:"id,omitempty"`
 }
 
 func (m *BookIdRequest) Reset()         { *m = BookIdRequest{} }
 func (m *BookIdRequest) String() string { return proto.CompactTextString(m) }
 func (*BookIdRequest) ProtoMessage()    {}
 
-func init() {
-}
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
 
 // Client API for BookService service
 
