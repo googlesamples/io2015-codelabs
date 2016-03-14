@@ -30,12 +30,17 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+const _ = proto.ProtoPackageIsVersion1
+
 type Empty struct {
 }
 
-func (m *Empty) Reset()         { *m = Empty{} }
-func (m *Empty) String() string { return proto.CompactTextString(m) }
-func (*Empty) ProtoMessage()    {}
+func (m *Empty) Reset()                    { *m = Empty{} }
+func (m *Empty) String() string            { return proto.CompactTextString(m) }
+func (*Empty) ProtoMessage()               {}
+func (*Empty) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
 
 type Book struct {
 	Id     int32  `protobuf:"varint,1,opt,name=id" json:"id,omitempty"`
@@ -43,17 +48,19 @@ type Book struct {
 	Author string `protobuf:"bytes,3,opt,name=author" json:"author,omitempty"`
 }
 
-func (m *Book) Reset()         { *m = Book{} }
-func (m *Book) String() string { return proto.CompactTextString(m) }
-func (*Book) ProtoMessage()    {}
+func (m *Book) Reset()                    { *m = Book{} }
+func (m *Book) String() string            { return proto.CompactTextString(m) }
+func (*Book) ProtoMessage()               {}
+func (*Book) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
 
 type BookList struct {
 	Books []*Book `protobuf:"bytes,1,rep,name=books" json:"books,omitempty"`
 }
 
-func (m *BookList) Reset()         { *m = BookList{} }
-func (m *BookList) String() string { return proto.CompactTextString(m) }
-func (*BookList) ProtoMessage()    {}
+func (m *BookList) Reset()                    { *m = BookList{} }
+func (m *BookList) String() string            { return proto.CompactTextString(m) }
+func (*BookList) ProtoMessage()               {}
+func (*BookList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
 
 func (m *BookList) GetBooks() []*Book {
 	if m != nil {
@@ -66,9 +73,17 @@ type BookIdRequest struct {
 	Id int32 `protobuf:"varint,1,opt,name=id" json:"id,omitempty"`
 }
 
-func (m *BookIdRequest) Reset()         { *m = BookIdRequest{} }
-func (m *BookIdRequest) String() string { return proto.CompactTextString(m) }
-func (*BookIdRequest) ProtoMessage()    {}
+func (m *BookIdRequest) Reset()                    { *m = BookIdRequest{} }
+func (m *BookIdRequest) String() string            { return proto.CompactTextString(m) }
+func (*BookIdRequest) ProtoMessage()               {}
+func (*BookIdRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+
+func init() {
+	proto.RegisterType((*Empty)(nil), "books.Empty")
+	proto.RegisterType((*Book)(nil), "books.Book")
+	proto.RegisterType((*BookList)(nil), "books.BookList")
+	proto.RegisterType((*BookIdRequest)(nil), "books.BookIdRequest")
+}
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
@@ -174,9 +189,9 @@ func RegisterBookServiceServer(s *grpc.Server, srv BookServiceServer) {
 	s.RegisterService(&_BookService_serviceDesc, srv)
 }
 
-func _BookService_List_Handler(srv interface{}, ctx context.Context, codec grpc.Codec, buf []byte) (interface{}, error) {
+func _BookService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error) (interface{}, error) {
 	in := new(Empty)
-	if err := codec.Unmarshal(buf, in); err != nil {
+	if err := dec(in); err != nil {
 		return nil, err
 	}
 	out, err := srv.(BookServiceServer).List(ctx, in)
@@ -186,9 +201,9 @@ func _BookService_List_Handler(srv interface{}, ctx context.Context, codec grpc.
 	return out, nil
 }
 
-func _BookService_Insert_Handler(srv interface{}, ctx context.Context, codec grpc.Codec, buf []byte) (interface{}, error) {
+func _BookService_Insert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error) (interface{}, error) {
 	in := new(Book)
-	if err := codec.Unmarshal(buf, in); err != nil {
+	if err := dec(in); err != nil {
 		return nil, err
 	}
 	out, err := srv.(BookServiceServer).Insert(ctx, in)
@@ -198,9 +213,9 @@ func _BookService_Insert_Handler(srv interface{}, ctx context.Context, codec grp
 	return out, nil
 }
 
-func _BookService_Get_Handler(srv interface{}, ctx context.Context, codec grpc.Codec, buf []byte) (interface{}, error) {
+func _BookService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error) (interface{}, error) {
 	in := new(BookIdRequest)
-	if err := codec.Unmarshal(buf, in); err != nil {
+	if err := dec(in); err != nil {
 		return nil, err
 	}
 	out, err := srv.(BookServiceServer).Get(ctx, in)
@@ -210,9 +225,9 @@ func _BookService_Get_Handler(srv interface{}, ctx context.Context, codec grpc.C
 	return out, nil
 }
 
-func _BookService_Delete_Handler(srv interface{}, ctx context.Context, codec grpc.Codec, buf []byte) (interface{}, error) {
+func _BookService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error) (interface{}, error) {
 	in := new(BookIdRequest)
-	if err := codec.Unmarshal(buf, in); err != nil {
+	if err := dec(in); err != nil {
 		return nil, err
 	}
 	out, err := srv.(BookServiceServer).Delete(ctx, in)
@@ -271,4 +286,24 @@ var _BookService_serviceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
+}
+
+var fileDescriptor0 = []byte{
+	// 253 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x74, 0x91, 0xdd, 0x4a, 0x03, 0x31,
+	0x10, 0x85, 0xdd, 0x6e, 0xb3, 0xea, 0xac, 0x3f, 0x30, 0x14, 0x59, 0xf6, 0x46, 0x0d, 0xa8, 0x45,
+	0x70, 0x91, 0xfa, 0x06, 0x52, 0x91, 0x82, 0x57, 0xf1, 0xc2, 0xeb, 0xfe, 0x0c, 0x34, 0x58, 0x4d,
+	0xcd, 0x4e, 0x05, 0x1f, 0xd7, 0x37, 0x31, 0xc9, 0x2e, 0x92, 0x2e, 0xf4, 0x2e, 0x67, 0xe6, 0xcc,
+	0x77, 0x0e, 0x04, 0xf2, 0x99, 0x31, 0xef, 0x75, 0xb5, 0xb6, 0x86, 0x0d, 0x8a, 0x20, 0xe4, 0x3e,
+	0x88, 0xa7, 0x8f, 0x35, 0xff, 0xc8, 0x31, 0xf4, 0x1f, 0xdd, 0x04, 0x4f, 0xa0, 0xa7, 0x17, 0x45,
+	0x72, 0x91, 0x0c, 0x85, 0x72, 0x2f, 0x1c, 0x80, 0x60, 0xcd, 0x2b, 0x2a, 0x7a, 0x6e, 0x74, 0xa8,
+	0x1a, 0x81, 0x67, 0x90, 0x4d, 0x37, 0xbc, 0x34, 0xb6, 0x48, 0xc3, 0xb8, 0x55, 0xf2, 0x0e, 0x0e,
+	0x3c, 0xe5, 0x45, 0xd7, 0x8c, 0x97, 0xd0, 0x64, 0x38, 0x58, 0x3a, 0xcc, 0x47, 0x79, 0xd5, 0xc4,
+	0xfb, 0xbd, 0x6a, 0xd3, 0xcf, 0xe1, 0xd8, 0xcb, 0xc9, 0x42, 0xd1, 0xd7, 0x86, 0xdc, 0x4d, 0x27,
+	0x7d, 0xf4, 0x9b, 0x40, 0xee, 0x1d, 0xaf, 0x64, 0xbf, 0xf5, 0x9c, 0xf0, 0x06, 0xfa, 0x81, 0x7d,
+	0xd4, 0xc2, 0x42, 0xf7, 0xf2, 0x34, 0x42, 0xfb, 0xb5, 0xdc, 0xc3, 0x2b, 0xc8, 0x26, 0x9f, 0x35,
+	0x59, 0xc6, 0x38, 0xb7, 0xdc, 0xba, 0x73, 0xb6, 0x5b, 0x48, 0x9f, 0x89, 0x71, 0x10, 0x79, 0xfe,
+	0xcb, 0x94, 0xf1, 0xa5, 0xf3, 0x56, 0x90, 0x8d, 0x69, 0x45, 0x4c, 0x3b, 0xec, 0x5d, 0xf6, 0x35,
+	0x88, 0xb7, 0x29, 0xcf, 0x97, 0x9d, 0xb2, 0xdb, 0xd4, 0xfb, 0x64, 0x96, 0x85, 0x0f, 0x79, 0xf8,
+	0x0b, 0x00, 0x00, 0xff, 0xff, 0xef, 0xf7, 0x61, 0x7c, 0x9f, 0x01, 0x00, 0x00,
 }

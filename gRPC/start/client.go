@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	address = flag.String("address", "127.0.0.1:50051", "Address of service")
+	address = flag.String("address", "0.0.0.0:50051", "Address of service")
 )
 
 // GetClient attempts to dial the specified address flag and returns a service
@@ -135,7 +135,7 @@ func doDelete(ctx context.Context, args ...string) {
 	defer conn.Close()
 	r, err := client.Delete(ctx, &pb.BookIdRequest{int32(id)})
 	if err != nil {
-		log.Fatalf("Get book (%v): %v", id, err)
+		log.Fatalf("Delete book (%v): %v", id, err)
 	}
 	fmt.Println("Server response:")
 	printRespAsJson(r)
