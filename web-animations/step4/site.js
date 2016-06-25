@@ -81,8 +81,8 @@ window.addEventListener('load', function() {
   anim.pause();  // never play this animation forward
 
   function updatePlayer() {
-    var top = window.scrollY;
-    var height = document.body.scrollHeight - window.innerHeight;
+    var top = window.scrollY || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - window.innerHeight;
     anim.currentTime = top / height;
   }
   updatePlayer();
