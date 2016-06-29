@@ -22,7 +22,7 @@ module.exports = function(config) {
   }
 
   function getUserBooks(userId, callback) {
-    var query = dataset.createQuery(['Book']).filter('userId =', userId);
+    var query = dataset.createQuery(['Book']).filter('userId', '=', userId);
     dataset.runQuery(query, callback);
   }
 
