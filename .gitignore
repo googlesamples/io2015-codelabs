@@ -3,7 +3,10 @@
 Pods/
 Podfile.lock
 xcuserdata/
+iclouddata/
 *.xcworkspace/
 
 # Android
 .gradle
+.DS_.Play.Store 
+.log/log-id
