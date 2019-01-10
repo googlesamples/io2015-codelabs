@@ -1,0 +1,1 @@
+DEPRECATED : This code is no longer supported, please consider using [Android Auto Messaging Codelab](https://github.com/googlecodelabs/device-messaging) code instead. There is an accompanying codelab tutorial at [Android Auto Messaging Codelab](https://codelabs.developers.google.com/codelabs/device-messaging).

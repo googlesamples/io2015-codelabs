@@ -1,3 +1,7 @@
+DEPRECATED : This code is no longer supported, please consider using the [Android Watchface Codelab](https://github.com/googlecodelabs/watchface) code instead. There is an accompanying codelab tutorial at [Create a Watchface Codelab](https://codelabs.developers.google.com/codelabs/watchface).
+
+
+
 Android Wear watch face codelab
 ===============================
 
