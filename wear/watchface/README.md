@@ -1,3 +1,5 @@
+DEPRECATED : This code and codelab is no longer supported. The general codelabs website is [Google Codelabs](https://codelabs.developers.google.com); check out more up-to-date code there.
+
 Android Wear watch face codelab
 ===============================
 
